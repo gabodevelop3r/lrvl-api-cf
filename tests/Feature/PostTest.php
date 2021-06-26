@@ -81,4 +81,38 @@ class PostTest extends TestCase
 
     }
 
+
+
+    /** 
+     * 
+     * 
+     * @test
+     * 
+    */
+    
+    public function updates_post(){
+
+
+        $data = [
+            'title'=>$this->faker->sentence($nbWords = 6,  $variableNbWords = true),
+            'content'=> $this->faker->text($maxNbChars = 40)
+
+        ];
+
+        create('App\Models\User');
+
+        $post = create('App\Models\Post');
+
+        $response=$this->json('PUT',$this->baseUrl."posts/{$post->id}",$data);
+
+        $response->assertStatus(200);
+        
+        $post = $post->fresh();
+            
+        $this->assertEquals($post->title,$data['title']);
+        $this->assertEquals($post->content,$data['content']);
+
+    }
+    
+    
 }
