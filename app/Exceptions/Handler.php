@@ -53,10 +53,13 @@ class Handler extends ExceptionHandler
 
     public function handleApiExceptions($request, $exception){
 
-        // validar si el objecto es una instancion de ModelNotFoundException
+        // validar si el objecto es una instancia de ModelNotFoundException
         if($exception->getPrevious()  instanceof ModelNotFoundException){
             return response()->json(['error'=>'Model Not Found'],404);   
         }
+        $this->reportable(function (Throwable $e ) {
+            //
+        });
     }
 
     
