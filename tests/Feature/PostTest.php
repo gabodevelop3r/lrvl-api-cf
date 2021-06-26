@@ -42,4 +42,30 @@ class PostTest extends TestCase
         ]);
         
     }
+
+
+    /**
+     * 
+     * @test
+     *  
+     */  
+    
+
+    public function deletes_post(){
+
+
+        $user = create('App\Models\User');
+
+        $post = create('App\Models\Post');
+
+        $this->json('DELETE', $this->baseUrl ."posts/{$post->id}")
+
+            ->assertStatus(204);
+
+
+        $this->assertNull(Post::find($post->id));
+
+    }
+
+
 }
