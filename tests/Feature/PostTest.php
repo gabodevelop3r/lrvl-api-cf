@@ -26,7 +26,6 @@ class PostTest extends TestCase
             'author_id'=>$user->id
         ];
         
-        // echo $data;
         $response = $this->json('POST', $this->baseUrl."posts", $data);
 
         $response->assertStatus(201); # la respuesta del servidor debe ser 201
@@ -67,5 +66,19 @@ class PostTest extends TestCase
 
     }
 
+
+    /** 
+     * 
+     * @test
+     * 
+    */
+    public function deleteWithError(){
+
+        $data = [];
+        $response = $this->json('POST', $this->baseUrl.'posts',$data);
+
+        $response->assertStatus(422);
+
+    }
 
 }

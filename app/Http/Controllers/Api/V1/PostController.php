@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\PostRequest;
+
 class PostController extends Controller
 {
     /**
@@ -24,9 +26,10 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+
+        
         $post= Post::create($request->all());
 
         return response()->json(['data'=>$post],201);
