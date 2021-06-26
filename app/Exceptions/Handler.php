@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
+
 
 class Handler extends ExceptionHandler
 {
@@ -37,17 +39,24 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (Throwable $e, $request) {
             if($request->expectsJson()){
-                return response()->json('Sorry, validation failed',422);
+                return $this->handleApiExceptions($request, $e);
             }
         });
         
         
         
-        $this->reportable(function (Throwable $e , $request) {
+        $this->reportable(function (Throwable $e ) {
             //
-            
         });
       
+    }
+
+    public function handleApiExceptions($request, $exception){
+
+        // validar si el objecto es una instancion de ModelNotFoundException
+        if($exception->getPrevious()  instanceof ModelNotFoundException){
+            return response()->json(['error'=>'Model Not Found'],404);   
+        }
     }
 
     
