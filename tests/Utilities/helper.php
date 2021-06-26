@@ -3,6 +3,7 @@
 
 function  create($class , $attr = []){
 
-    return $class->factory()->create($attr);
+    return $class::factory()->create($attr);
 }
 
+?>

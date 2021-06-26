@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\V1\PostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,10 +22,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     
     'prefix'=>'v1', # version de la api
-    'namespace'=>'Api\V1', # ubicacion de nuestros controllers
-
+    // 'namespace'=>'Api\V1', # ubicacion de nuestros controllers
 
 ],function(){
+
+    Route::apiResource('posts',PostController::class);
 
 });
 
@@ -36,7 +37,8 @@ Route::group([
     'prefix'=>'v2', # version de la api
     'namespace'=>'Api\V2', # ubicacion de nuestros controllers
 
-
 ],function(){
+
+   
 
 });
