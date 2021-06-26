@@ -28,3 +28,15 @@ Route::group([
 ],function(){
 
 });
+
+
+
+Route::group([
+    
+    'prefix'=>'v2', # version de la api
+    'namespace'=>'Api\V2', # ubicacion de nuestros controllers
+
+
+],function(){
+
+});
