@@ -47,7 +47,7 @@ class AuthControllert extends Controller
 
         if($user){ # ¿ el usuario existe ? 
             if(Hash::check($request->password, $user->password)){ # ¿ su password es correcta ? 
-                $token = $user->createToken('Laravel User Client')->posix_accessToken; # crear token
+                $token = $user->createToken('Laravel User Client')->accessToken; # crear token
                 return response()->json(['token'=>$token],200);
             }else{
                 return response()->json(['error'=>'Password or Email missmatch'],422);
