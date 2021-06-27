@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     
     'prefix'=>'v1', # version de la api
+    'middleware'=>["auth:api"] # autenticacion de passport en las rutas de la api
 
 ],function(){
 
