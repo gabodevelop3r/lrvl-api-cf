@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\PostController;
+use App\Http\Controllers\Api\AuthControllert;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+// rutas api version 1
 Route::group([
     
     'prefix'=>'v1', # version de la api
@@ -29,8 +30,7 @@ Route::group([
 
 });
 
-
-
+// rutas api version 2
 Route::group([
     
     'prefix'=>'v2', # version de la api
@@ -41,3 +41,7 @@ Route::group([
    
 
 });
+
+/* rutas para crear y loguear usuario */
+Route::post('login',[AuthControllert::class, 'login']);
+Route::post('signup',[AuthControllert::class, 'signup']);
