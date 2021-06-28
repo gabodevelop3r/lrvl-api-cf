@@ -28,7 +28,7 @@ class PostResource extends JsonResource
                 'title'=>$this->title
             ],
             
-            'relationships'=>[
+            'relationships'=>[ # apartado de relaciones del modelo
                 new PostRelationshipResource($this),
             ],
 

@@ -24,7 +24,7 @@ class Post extends Model
 
     public function author(){
         
-        return $this->belogsTo('App\Models\User','author_id');
+        return $this->belongsTo('App\Models\User','author_id');
     }
 
 }

@@ -13,8 +13,9 @@ ejecutar
 ## convencion para travajar los recursos de nuestra api
 
 1.- php artisan make:resource PostResource (administrar recurso para un modelo)
-1.- php artisan make:resource PostRelationshipResource (administrar relaciones del modelo)
-1.- php artisan make:resource PostCollecion ()
+2.- php artisan make:resource PostRelationshipResource (administrar relaciones del modelo)
+3.- php artisan make:resource PostCollecion (administrar todos los post)
+4.- php artisan make:resource AuthorIdentifierResource (hacer referencia solo al author)
 
 ## No olvides visitar
 
