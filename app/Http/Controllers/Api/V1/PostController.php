@@ -33,10 +33,12 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
 
-        
+        PostResource::withoutWrapping(); #withoutWrapping es para elimiar el key data
         $post= Post::create($request->all());
 
-        return response()->json(['data'=>$post],201);
+        return (new PostResource($post))
+                    ->response()
+                    ->setStatusCode(200);
         
         
     }
