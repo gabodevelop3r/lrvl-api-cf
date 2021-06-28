@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Models\User;
+use App\Models\Comment;
 
 class PostCollection extends ResourceCollection
 {
@@ -18,4 +20,31 @@ class PostCollection extends ResourceCollection
             'data'=>PostResource::collection($this->collection)
         ];
     }
+
+
+    public function with($request){
+
+        $authors = $this->collection->map(function ($post){
+            return $post->author;
+        });
+        $comments = $this->collection->flatmap(function ($post){
+            return $post->comments;
+        });
+        
+        $include = $authors->merge($comments);
+
+        return [
+            'links'=> [
+               'self' => route('posts.index'),
+            ],
+            'included'=> $include -> map(function ($item){
+                if($item instanceof User ){
+                    return new UserResource($item);
+                }else if($item instanceof Comment){
+                    return new CommentResource($item);
+                }
+            })
+        ];
+    }
+    
 }
