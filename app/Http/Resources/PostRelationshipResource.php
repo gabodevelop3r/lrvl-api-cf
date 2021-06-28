@@ -17,13 +17,13 @@ class PostRelationshipResource extends JsonResource
         return [
             'author'=>[
                 'links'=>[
-                    'self'=>'', # self hace referencia a donde se encuentra el link
-                    'related'=>''
+                    'self'=>  route('post.relationship.author',['post'=>$this->id]), # self hace referencia a donde se encuentra el link
+                    'related'=> route('post.author',['post'=>$this->id])
                 ],
 
                 'data'=> new AuthorIdentifierResource($this->author),
             ],
-            'comments'=> new PostCommentsRelationshipCollection($this->comments)
+            'comments'=> (new PostCommentsRelationshipCollection($this->comments))->additional(['post'=>$this])
         ];
     }
 }
