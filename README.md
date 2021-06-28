@@ -10,6 +10,11 @@ ejecutar
 
 1.- php artisan serve
 
+## convencion para travajar los recursos de nuestra api
+
+1.- php artisan make:resource PostResource (administrar recurso para un modelo)
+1.- php artisan make:resource PostRelationshipResource (administrar relaciones del modelo)
+1.- php artisan make:resource PostCollecion ()
 
 ## No olvides visitar
 

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
-
+use App\Http\Resources\PostCollection;
 
 use App\Http\Requests\PostRequest;
 
@@ -20,6 +20,8 @@ class PostController extends Controller
     public function index()
     {
         //
+        return new PostCollection(Post::all());
+        
     }
 
     /**

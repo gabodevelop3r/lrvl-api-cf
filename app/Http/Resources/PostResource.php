@@ -20,11 +20,18 @@ class PostResource extends JsonResource
         */
         
         return [
+            
             'type'=>$this->getTable(),
             'id'=>$this->id,
+            
             'attributes'=>[
                 'title'=>$this->title
             ],
+            
+            'relationships'=>[
+                new PostRelationshipResource($this),
+            ],
+
             'links'=>[
                 'self'=> route('posts.show',['post'=>$this->id])
             ]
