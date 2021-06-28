@@ -34,15 +34,21 @@ class PostCollection extends ResourceCollection
         $include = $authors->merge($comments);
 
         return [
+
             'links'=> [
-               'self' => route('posts.index'),
+               'self' => route( 'posts.index' ),
             ],
-            'included'=> $include -> map(function ($item){
-                if($item instanceof User ){
-                    return new UserResource($item);
-                }else if($item instanceof Comment){
-                    return new CommentResource($item);
-                }
+            
+            'included'=> $include -> map(function ($item ){
+                
+                if( $item instanceof User )
+                
+                    return new UserResource( $item );
+                    
+                else if( $item instanceof Comment )
+                
+                    return new CommentResource( $item );
+                
             })
         ];
     }
