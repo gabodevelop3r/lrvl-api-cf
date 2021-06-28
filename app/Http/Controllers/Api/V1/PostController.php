@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Resources\PostResource;
+
 
 use App\Http\Requests\PostRequest;
 
@@ -46,6 +48,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+
+        return new PostResource($post);
+
+
         return response()->json(['data'=>$post],200);
         
     }
