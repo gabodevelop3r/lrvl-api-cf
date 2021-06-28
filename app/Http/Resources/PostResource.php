@@ -31,12 +31,18 @@ class PostResource extends JsonResource
                 'title'=>$this->title
             ],
             $this->mergeWhen($user->isAdmin(),[
-                'created'=>$this->created_at
+
+                'created'=>$this->created_at,
+            ]),
+            
+            
+            
+            $this->mergeWhen($this->isAuthorLoaded() && $this->isCommentsLoaded(),[
+                'relationships'=>[ # apartado de relaciones del modelo
+                    new PostRelationshipResource($this),
+                ],
             ]), 
             
-            'relationships'=>[ # apartado de relaciones del modelo
-                new PostRelationshipResource($this),
-            ],
 
             'links'=>[
                 'self'=> route('posts.show',['post'=>$this->id])

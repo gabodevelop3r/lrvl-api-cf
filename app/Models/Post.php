@@ -27,4 +27,16 @@ class Post extends Model
         return $this->belongsTo('App\Models\User','author_id');
     }
 
+    public function isAuthorLoaded(){
+
+        return $this->relationLoaded('author');
+    }
+
+    public function isCommentsLoaded(){
+
+        return $this->relationLoaded('comments');
+    }
+    
+    
+
 }
