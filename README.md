@@ -10,6 +10,12 @@ ejecutar
 
 1.- php artisan serve
 
+
+## No olvides visitar
+
+1.- https://laravel.com/docs/8.x/eloquent-resources
+2.- https://jsonapi.org/format/#crud-creating
+
 ## Creditos
 
 Curso de servicios web con laravel, realizado en codigofacilito.

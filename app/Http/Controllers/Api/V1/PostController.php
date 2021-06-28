@@ -49,6 +49,8 @@ class PostController extends Controller
     {
         //
 
+        PostResource::withoutWrapping(); #withoutWrapping es para elimiar el key data
+        
         return new PostResource($post);
 
 
