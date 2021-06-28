@@ -16,6 +16,8 @@ ejecutar
 2.- php artisan make:resource PostRelationshipResource (administrar relaciones del modelo)
 3.- php artisan make:resource PostCollecion (administrar todos los post)
 4.- php artisan make:resource AuthorIdentifierResource (hacer referencia solo al author)
+5.- php artisan make:resource CommentIdentifierResource (hacer referencia al comentario)
+6.- php artisan make:resource PostCommentsRelationshipCollection (hacer referencia a la relacion de post y sus comentarios)
 
 ## No olvides visitar
 

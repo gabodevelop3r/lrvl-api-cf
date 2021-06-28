@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Auth;
 
 class PostResource extends JsonResource
 {
@@ -18,8 +19,10 @@ class PostResource extends JsonResource
             modificar la estructura del json
             para referenciar al modelo se puede utilizar this ya que se esta pasando como parametro    
         */
+
+        $user = Auth::user();
         
-        return [
+        $data = [
             
             'type'=>$this->getTable(),
             'id'=>$this->id,
@@ -27,6 +30,9 @@ class PostResource extends JsonResource
             'attributes'=>[
                 'title'=>$this->title
             ],
+            $this->mergeWhen($user->isAdmin(),[
+                'created'=>$this->created_at
+            ]), 
             
             'relationships'=>[ # apartado de relaciones del modelo
                 new PostRelationshipResource($this),
@@ -36,5 +42,12 @@ class PostResource extends JsonResource
                 'self'=> route('posts.show',['post'=>$this->id])
             ]
         ];
+        
+        
+        
+
+        return $data;
+        
+        
     }
 }
